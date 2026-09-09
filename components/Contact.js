@@ -20,7 +20,7 @@ const channels = [
     value: "Connect on LinkedIn",
     // TODO(Emmanuel): replace with your real profile URL, e.g.
     // https://www.linkedin.com/in/your-handle
-    href: "https://www.linkedin.com/in/REPLACE-WITH-YOUR-HANDLE",
+    href: "https://www.linkedin.com/in/emmanuel-adedamola-460245229",
   },
 ];
 

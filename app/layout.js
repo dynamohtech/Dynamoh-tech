@@ -24,7 +24,7 @@ const plexMono = IBM_Plex_Mono({
 
 // TODO(Emmanuel): swap in your real domain once you have one — this is
 // used for the absolute Open Graph/Twitter image URLs below.
-const siteUrl = "https://emmanuel-portfolio.vercel.app";
+const siteUrl = "https://dynamotech.vercel.app";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
