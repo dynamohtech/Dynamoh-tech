@@ -49,7 +49,7 @@ export default function Hero() {
         </div>
 
         <div className="md:pt-2">
-          <div className="relative">
+          <div className="relative overflow-hidden">
             <div
               aria-hidden="true"
               className="absolute -inset-8 bg-gradient-to-br from-accent/25 via-[#7dd3fc]/10 to-transparent blur-3xl -z-10"
