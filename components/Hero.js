@@ -6,7 +6,7 @@ export default function Hero() {
       <div className="grid gap-12 md:grid-cols-[1.3fr_0.9fr] md:gap-16 items-start">
         <div>
           <p className="text-accent-strong font-medium mb-5">
-            Odoo ERP · Web Apps · Automation · Web3
+            Odoo ERP · Web Apps · AI Automation · Web3
           </p>
 
           <h1 className="font-display font-semibold text-ink text-[2.25rem] leading-[1.15] sm:text-5xl sm:leading-[1.12] md:text-[3.25rem] md:leading-[1.1] max-w-2xl">
