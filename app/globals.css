@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+/*
+  Design concept: "reconciled ledger" — now in a dark, tech-forward key.
+  Feedback was that the original light/paper palette read as too flat for
+  a technologist's portfolio. This keeps the reconciliation/ledger idea
+  (still a single confident accent standing in for "balanced") but moves
+  the whole site to a dark, high-contrast base with a vivid emerald accent
+  — closer to an IDE or terminal palette than office stationery.
+*/
+
+@theme {
+  --color-paper: #0b0f19;
+  --color-surface: #141a29;
+  --color-ink: #e7e9f2;
+  --color-ink-soft: #9aa3b8;
+  --color-ink-faint: #5b6478;
+  --color-accent: #34d399;
+  --color-accent-strong: #6ee7b7;
+  --color-accent-soft: rgba(52, 211, 153, 0.14);
+  --color-line: #232a3d;
+
+  --font-display: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  --font-body: var(--font-plex-sans), "IBM Plex Sans", sans-serif;
+  --font-mono: var(--font-plex-mono), "IBM Plex Mono", monospace;
+
+  --container-content: 72rem;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    background-image: radial-gradient(
+      ellipse 80% 50% at 50% -10%,
+      rgba(52, 211, 153, 0.14),
+      transparent
+    );
+    background-repeat: no-repeat;
+    color: var(--color-ink);
+    font-family: var(--font-body);
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Editorial measure for body copy — keeps paragraphs under ~75 characters */
+.measure {
+  max-width: 38rem;
+}
+
+.container-page {
+  max-width: var(--container-content);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container-page {
+    padding-inline: 2.5rem;
+  }
+}
