@@ -36,7 +36,7 @@ export const metadata = {
     description:
       "Odoo ERP customization, business process automation, and systems integration for retail and SME operations.",
     url: siteUrl,
-    siteName: "Emmanuel Adegbaju",
+    siteName: "dynamo-tech",
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],
     locale: "en_US",
     type: "website",
