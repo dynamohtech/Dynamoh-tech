@@ -9,7 +9,7 @@ const links = [
 
 export default function Nav() {
   return (
-    <header className="border-b border-line bg-paper/90 backdrop-blur-md sticky top-0 z-50 transform-gpu">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-line bg-paper/90 backdrop-blur-md">
       {/* rest of Nav component remains unchanged */}
       <div className="container-page flex items-center justify-between h-16">
         <a

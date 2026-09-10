@@ -12,20 +12,22 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen w-full overflow-x-clip">
+    <>
       <Nav />
-      <main className="w-full overflow-x-clip">
-        <Hero />
-        <About />
-        <Services />
-        <FeaturedWork />
-        <Skills />
-        <Teaching />
-        <Testimonials />
-        <StartProject />
-      </main>
-      <Contact />
-      <Footer />
-    </div>
+      <div className="w-full overflow-x-clip">
+        <main className="w-full">
+          <Hero />
+          <About />
+          <Services />
+          <FeaturedWork />
+          <Skills />
+          <Teaching />
+          <Testimonials />
+          <StartProject />
+        </main>
+        <Contact />
+        <Footer />
+      </div>
+    </>
   );
 }
