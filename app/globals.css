@@ -46,9 +46,7 @@
     background-repeat: no-repeat;
     color: var(--color-ink);
     font-family: var(--font-body);
-    width: 100%;
   }
-}
 
   ::selection {
     background-color: var(--color-accent);
