@@ -57,33 +57,30 @@ export async function submitProjectInquiry(prevState, formData) {
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
 
-    await resend.emails.send({
-      // Resend's shared test domain — works without verifying a custom
-      // domain, since every submission is sent to your own inbox anyway.
-      // Swap to a verified "you@yourdomain.com" address later if you want.
-      from: "Portfolio site <onboarding@resend.dev>",
-      to: RECIPIENT,
-      replyTo: email,
-      subject: `New project inquiry from ${name}`,
-      text: [
-        `Name: ${name}`,
-        `Email: ${email}`,
-        company ? `Company: ${company}` : null,
-        `Services needed: ${serviceList}`,
-        "",
-        "Project details:",
-        message,
-      ]
-        .filter(Boolean)
-        .join("\n"),
-    });
+    const { data, error } = await resend.emails.send({
+  from: "Portfolio site <onboarding@resend.dev>",
+  to: RECIPIENT,
+  replyTo: email,
+  subject: `New project inquiry from ${name}`,
+  text: [
+    `Name: ${name}`,
+    `Email: ${email}`,
+    company ? `Company: ${company}` : null,
+    `Services needed: ${serviceList}`,
+    "",
+    "Project details:",
+    message,
+  ]
+    .filter(Boolean)
+    .join("\n"),
+});
 
-    return { status: "success", message: "Sent — I'll get back to you soon." };
-  } catch (error) {
-    console.error("submitProjectInquiry: Resend error:", error);
-    return {
-      status: "error",
-      message: "Something went wrong sending this — email me directly instead.",
-    };
-  }
+if (error) {
+  console.error("submitProjectInquiry: Resend returned an error:", error);
+  return {
+    status: "error",
+    message: "Something went wrong sending this — email me directly instead.",
+  };
 }
+
+return { status: "success", message: "Sent — I'll get back to you soon." };
