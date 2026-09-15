@@ -52,31 +52,43 @@ export async function submitProjectInquiry(prevState, formData) {
     };
   }
 
-const { data, error } = await resend.emails.send({
-    from: "Portfolio site <onboarding@resend.dev>",
-    to: RECIPIENT,
-    replyTo: email,
-    subject: `New project inquiry from ${name}`,
-    text: [
-      `Name: ${name}`,
-      `Email: ${email}`,
-      company ? `Company: ${company}` : null,
-      `Services needed: ${serviceList}`,
-      "",
-      "Project details:",
-      message,
-    ]
-      .filter(Boolean)
-      .join("\n"),
-  });
+  const serviceList = services
+    .map((s) => SERVICE_LABELS[s] || s)
+    .join(", ");
 
-  if (error) {
-    console.error("submitProjectInquiry: Resend returned an error:", error);
+  try {
+    const { data, error } = await resend.emails.send({
+      from: "Portfolio site <onboarding@resend.dev>",
+      to: RECIPIENT,
+      replyTo: email,
+      subject: `New project inquiry from ${name}`,
+      text: [
+        `Name: ${name}`,
+        `Email: ${email}`,
+        company ? `Company: ${company}` : null,
+        `Services needed: ${serviceList}`,
+        "",
+        "Project details:",
+        message,
+      ]
+        .filter(Boolean)
+        .join("\n"),
+    });
+
+    if (error) {
+      console.error("submitProjectInquiry: Resend returned an error:", error);
+      return {
+        status: "error",
+        message: "Something went wrong sending this — email me directly instead.",
+      };
+    }
+
+    return { status: "success", message: "Sent — I'll get back to you soon." };
+  } catch (err) {
+    console.error("submitProjectInquiry exception:", err);
     return {
       status: "error",
-      message: "Something went wrong sending this — email me directly instead.",
+      message: "Server error sending email — please try again later.",
     };
   }
-
-  return { status: "success", message: "Sent — I'll get back to you soon." };
-}
+}s
