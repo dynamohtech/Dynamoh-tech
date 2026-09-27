@@ -6,30 +6,31 @@ export default function Hero() {
       <div className="grid gap-12 md:grid-cols-[1.3fr_0.9fr] md:gap-16 items-start">
         <div>
           <p className="text-accent-strong font-medium mb-5">
-            Odoo ERP · Web Apps · AI Automation · Web3
+            n8n AI Automation · AI Agents · Odoo ERP · Invoice Processing
           </p>
 
           <h1 className="font-display font-semibold text-ink text-[2.25rem] leading-[1.15] sm:text-5xl sm:leading-[1.12] md:text-[3.25rem] md:leading-[1.1] max-w-2xl">
-            I build the{" "}
+            I build{" "}
             <span className="bg-gradient-to-r from-accent to-[#7dd3fc] bg-clip-text text-transparent">
-              ERP, web, and automation systems
+              AI agents and workflows
             </span>{" "}
-            that keep retail operations reconciled.
+            that take manual work off your team.
           </h1>
 
           <p className="measure mt-6 text-ink-soft text-lg leading-relaxed">
-            Odoo customization, custom web apps, invoice-reconciliation
-            pipelines, and Web3 builds — built by the engineer running these
-            systems in production, not just architecting them on a
-            whiteboard.
+            n8n automations and AI agents that connect to Odoo, Dynamics 365,
+            your CRM or Google Sheets, from invoice processing and document
+            extraction to lead qualification. If your team spends hours
+            keying in invoices, moving data between systems or chasing leads
+            by hand, that's the work I automate.
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <a
-              href="mailto:dynamohtech24@gmail.com"
+              href="#start-a-project"
               className="inline-flex items-center rounded-sm bg-ink px-5 py-3 text-[0.95rem] font-medium text-paper hover:bg-accent-strong transition-colors"
             >
-              Email me
+              Start a project
             </a>
             <a
               href="https://wa.me/2349012230263"
@@ -57,7 +58,7 @@ export default function Hero() {
             <TerminalCard />
           </div>
           <p className="mt-3 text-xs text-ink-faint">
-            *Invoice-reconciliation pipeline is currently in development.
+            *Invoice reconciliation platform in development at ARTEE Group.
           </p>
         </div>
       </div>

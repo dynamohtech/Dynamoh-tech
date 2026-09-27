@@ -1,8 +1,14 @@
 # Emmanuel Adegbaju — Portfolio
 
 Next.js 16 (App Router, Turbopack) + Tailwind CSS v4. Single-page portfolio:
-Hero → About → Services → Featured Work → Skills → Teaching → Testimonials →
-Start a Project (form) → Contact.
+Hero → About → Services → Featured Work → Experience → Skills → Teaching →
+Testimonials → Start a Project (form) → Contact.
+
+Content follows the Upwork profile rebuild (Sep 2026): n8n AI automation
+and AI agents first, then invoice/document extraction and Odoo.
+
+Live at https://dynamotech.vercel.app (Vercel project `dynamotech`, which
+deploys every push to `main` of this repo).
 
 ## Run locally
 
@@ -14,85 +20,87 @@ npm run dev
 
 Open http://localhost:3000.
 
-## Set up the contact form (Resend)
+## Contact form (Resend)
 
-The "Start a project" form emails submissions straight to
-**dynamohtech24@gmail.com** using [Resend](https://resend.com) — a
-transactional email API with a permanent free tier (3,000 emails/month,
-100/day), plenty for a portfolio site.
+The "Start a project" form emails submissions to
+**dynamohtech24@gmail.com** through [Resend](https://resend.com).
 
-1. Sign up at resend.com (free, no card required) — use the same Gmail
-   address submissions should land in.
-2. Create an API key at resend.com/api-keys.
-3. Locally: copy `.env.local.example` to `.env.local` and paste the key in.
-4. On Vercel: Project → Settings → Environment Variables → add
-   `RESEND_API_KEY` with the same value → redeploy.
+| Variable | Required | What it does |
+| --- | --- | --- |
+| `RESEND_API_KEY` | Yes | Your key from resend.com/api-keys |
+| `CONTACT_TO_EMAIL` | No | Where submissions go. Default `dynamohtech24@gmail.com` |
+| `CONTACT_FROM_EMAIL` | No | Sender. Default `Portfolio site <onboarding@resend.dev>` |
 
-No domain verification needed — the form sends from Resend's shared test
-domain (`onboarding@resend.dev`), which works fine because every
-submission is delivered to your own inbox. You can switch to a
-`you@yourdomain.com` sender later once you have a verified domain; it's a
-cosmetic change (`app/actions.js`), not a functional one.
+**The one rule that trips everyone up:** while the form sends from
+`onboarding@resend.dev` (the default), Resend will only deliver to the
+email address that owns your Resend account. Every other recipient is
+rejected with a 403. So either:
 
-The form includes a hidden honeypot field to filter out basic bot spam
-and validates required fields server-side before sending anything.
+- sign in to Resend with (or change the account email to)
+  `dynamohtech24@gmail.com`, or
+- set `CONTACT_TO_EMAIL` to the email your Resend account uses, or
+- verify a domain in Resend (Domains → Add domain, add the DNS records),
+  then set `CONTACT_FROM_EMAIL` to an address on it, e.g.
+  `Portfolio site <hello@yourdomain.com>`. This also makes the emails less
+  likely to land in spam.
 
-## Deploy to Vercel
+### Test it in one command
 
-**Easiest — Vercel CLI:**
 ```bash
-npm install -g vercel
-vercel
+npm run test:email
 ```
-Follow the prompts, then add `RESEND_API_KEY` in the Vercel dashboard
-(Settings → Environment Variables) and redeploy — env vars set after the
-first deploy need a redeploy to take effect.
 
-**Or — GitHub + Vercel dashboard:**
-1. Push this folder to a new GitHub repo.
-2. Go to vercel.com → New Project → Import the repo.
-3. Add the `RESEND_API_KEY` environment variable during import (or after,
-   in Settings) → Deploy.
+This sends one email with the same settings as the form and prints
+exactly what Resend replies, including the reason if it's rejected.
 
-## Before you make it public — checklist
+### If submissions still don't arrive
 
-- [ ] **RESEND_API_KEY** — the form silently shows an error until this is
-      set (see above). Test it once live by submitting the form yourself.
-- [ ] **LinkedIn URL** — `components/Contact.js` has a placeholder
-      (`REPLACE-WITH-YOUR-HANDLE`) where your real profile link goes.
-- [ ] **Site URL** — `app/layout.js` has `siteUrl` set to a placeholder
-      `.vercel.app` address. Update it once you know your real URL.
-- [ ] **OG image** — add a 1200×630 `public/og-image.png` (see
-      `public/README.txt`). Without it, LinkedIn/Twitter link previews will
-      show a broken image instead of a banner.
-- [ ] **"10,000+ invoices/month"** — appears in `components/Hero.js` (the
-      ledger card) and `components/FeaturedWork.js` (first case study),
-      both marked as in-development. Update the tense once that pipeline
-      is actually live.
-- [ ] **Confirm with ARTEE** what you're allowed to reference publicly
-      about the invoice-reconciliation platform and the price-checker —
-      not a code change, but worth doing before this goes out widely. The
-      copy is written at a "problem + architecture" level with no
-      proprietary specifics, but that sign-off is yours to get.
-- [ ] **More testimonials (optional)** — `components/Testimonials.js` is
-      now a real carousel with 5 actual Fiverr reviews. Send more
-      screenshots any time and I'll add them to the array.
-- [ ] **Profile photo (optional)** — the site currently uses an "EA"
-      initials mark instead of a photo (a deliberate, clean look). Send a
-      headshot if you'd rather I wire in a real photo.
+1. Submit the form on the live site. If you now see "Something went wrong
+   sending this", Resend rejected it: open Vercel → your project → Logs and
+   look for lines starting with `[contact form]`; they include Resend's
+   error and the fix.
+2. If the form says "Sent" but nothing arrives, check the spam folder and
+   the Emails page in the Resend dashboard (it shows delivered, bounced or
+   complained for every send).
+3. After adding or changing a variable on Vercel, redeploy. Variables only
+   apply to deployments made after you save them.
+
+The form includes a hidden honeypot field to filter basic bot spam and
+validates required fields server-side before sending anything.
+
+## Deploy
+
+The Vercel project `dynamotech` is connected to this repo: every push to
+`main` deploys to https://dynamotech.vercel.app. Environment variables
+live in that project under Settings → Environment Variables; redeploy after
+changing them.
+
+## Before you make it public: checklist
+
+- [ ] **RESEND_API_KEY** on Vercel, then run the form once yourself (see
+      "Contact form" above).
+- [ ] **Site URL**: `app/layout.js` uses `https://dynamotech.vercel.app`.
+      Update it if you move to a custom domain.
+- [ ] **"10,000+ invoices a month" and "2,000+ vendors"**: in
+      `components/TerminalCard.js`, `components/FeaturedWork.js` and
+      `components/Experience.js`, marked as in development. Update the
+      tense once the pipeline is live.
+- [ ] **Confirm with ARTEE** what you may reference publicly about the
+      invoice-reconciliation platform and the price checker.
+- [ ] **Travel website case study**: written without the client's name or
+      a link. Add the live link in `components/FeaturedWork.js` once the
+      client is happy to be shown.
+- [ ] **Teaching**: add the tech institute's name and dates in
+      `components/Teaching.js` if you want them shown.
 
 ## Design notes
 
 Palette and type are chosen to match the actual subject matter —
-reconciliation and ledgers — rendered in a dark, technical key rather
-than a generic light SaaS template:
-- **Colors**: deep navy-black background with a soft green radial glow
-  behind the hero, a vivid emerald accent standing in for "reconciled /
-  balanced," and a two-tone emerald-to-cyan gradient on the hero's key
-  phrase and behind the terminal card for depth. Defined as CSS variables
+reconciliation and ledgers — rather than a generic SaaS template:
+- **Colors**: warm paper background, deep navy ink, a single emerald
+  accent standing in for "reconciled / balanced." Defined as CSS variables
   in `app/globals.css` (`@theme` block) — change them there and they
-  propagate everywhere. The Contact and Footer sections intentionally
-  flip to a light background as the page's one bright closing moment.
+  propagate everywhere.
 - **Type**: Space Grotesk for headings, IBM Plex Sans for body text, IBM
   Plex Mono for the numeric "ledger" callouts. Loaded via `next/font/google`
   in `app/layout.js` — this needs internet access to Google Fonts at build
@@ -105,10 +113,9 @@ than a generic light SaaS template:
   works even before JavaScript finishes loading, and the email-sending
   code never ships to the browser.
 
-## Notes on the ARTEE-affiliated case studies
+## Notes on the case studies
 
 The invoice-reconciliation and price-checker write-ups credit ARTEE Group
-by name ("Built for ARTEE Group") without calling it a client engagement —
-it's your employer, not a contractor relationship, and that's the framing
-that stays consistent with your LinkedIn experience section. Dynamo Token
-and Sol-deep Search are labeled as personal projects.
+("Built for ARTEE Group") without calling it a client engagement: it's
+your employer, not a contractor relationship. The lead-qualification
+agent and the Solana scanner are labeled "Own build".

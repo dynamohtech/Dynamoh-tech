@@ -10,13 +10,13 @@ export default function Teaching() {
 
         <div className="max-w-2xl">
           <p className="text-ink-soft text-lg leading-relaxed">
-            I designed and taught AI automation to students who'd never
-            written a line of code — first through a paid training
-            programme I launched for secondary school students in Ikorodu,
-            and separately through a CAC-registered tech institute. Building
+            I teach AI automation to people who've never written a line of
+            code. I designed and delivered a paid 7-phase AI automation
+            programme for secondary-school students in Ikorodu, Lagos, and
+            taught AI automation at a CAC-registered tech institute. Building
             a curriculum is a different kind of rigor than shipping a
-            feature: every phase has to hold up for someone seeing the
-            concept for the first time.
+            feature: every phase has to hold up for someone seeing the idea
+            for the first time.
           </p>
 
           <div className="mt-8">
@@ -26,9 +26,16 @@ export default function Teaching() {
               ))}
             </div>
             <p className="mt-3 text-sm text-ink-faint">
-              A complete 7-phase curriculum — slides and workbooks included.
+              A complete 7-phase curriculum, slides and workbooks included.
             </p>
           </div>
+
+          <p className="mt-8 text-ink-soft leading-relaxed">
+            <span className="text-ink">Shipworthy</span>{" "}
+            <span className="text-ink-faint">(in development)</span>: an
+            online course that teaches non-technical people to build web apps
+            with AI tools and no code.
+          </p>
         </div>
       </div>
     </section>

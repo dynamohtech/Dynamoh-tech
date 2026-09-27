@@ -1,26 +1,54 @@
 const groups = [
   {
-    label: "ERP & backend",
-    items: ["Odoo", "Odoo.sh", "Python", "PostgreSQL"],
-  },
-  {
     label: "Automation & AI",
-    items: ["n8n", "AI agents", "Vision-LLM extraction", "OCR pipelines"],
-  },
-  {
-    label: "Cloud & integration",
     items: [
-      "AWS Lambda",
-      "AWS SAM",
-      "DynamoDB",
-      "Dynamics 365 API",
-      "WhatsApp Cloud API",
-      "Telegram Bot API",
+      "n8n (cloud & self-hosted)",
+      "Make",
+      "Zapier",
+      "OpenAI",
+      "Gemini",
+      "Groq",
+      "Vision-LLMs",
+      "docTR / OCR",
     ],
   },
   {
-    label: "Web3",
-    items: ["Solana", "React / Vite"],
+    label: "ERP & data",
+    items: [
+      "Odoo 19 Enterprise",
+      "Odoo.sh",
+      "Microsoft Dynamics 365",
+      "PostgreSQL",
+      "Supabase",
+      "NocoDB",
+      "Airtable",
+      "Google Sheets",
+    ],
+  },
+  {
+    label: "Development",
+    items: [
+      "Python",
+      "TypeScript",
+      "React",
+      "Next.js",
+      "REST APIs & webhooks",
+      "Docker",
+      "AWS (Lambda, SAM, DynamoDB)",
+      "Vercel",
+      "GitHub",
+      "Claude Code",
+    ],
+  },
+  {
+    label: "Also",
+    items: [
+      "Telegram Bot API",
+      "WordPress",
+      "Bubble",
+      "Mapbox",
+      "Solana & BNB Smart Chain",
+    ],
   },
 ];
 

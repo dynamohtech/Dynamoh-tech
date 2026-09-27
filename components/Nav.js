@@ -3,14 +3,13 @@ import Image from "next/image";
 const links = [
   { href: "#work", label: "Work" },
   { href: "#services", label: "Services" },
-  { href: "#teaching", label: "Teaching" },
+  { href: "#experience", label: "Experience" },
   { href: "#contact", label: "Contact" },
 ];
 
 export default function Nav() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-line bg-paper/90 backdrop-blur-md">
-      {/* rest of Nav component remains unchanged */}
       <div className="container-page flex items-center justify-between h-16">
         <a
           href="#top"
@@ -41,10 +40,10 @@ export default function Nav() {
         </nav>
 
         <a
-          href="#contact"
+          href="#start-a-project"
           className="inline-flex items-center rounded-sm bg-ink px-4 py-2 text-sm font-medium text-paper hover:bg-accent-strong transition-colors"
         >
-          Get in touch
+          Start a project
         </a>
       </div>
     </header>

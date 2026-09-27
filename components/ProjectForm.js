@@ -3,17 +3,14 @@
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { submitProjectInquiry } from "@/app/actions";
-
-const SERVICE_OPTIONS = [
-  { id: "odoo", label: "Odoo ERP customization & integration" },
-  { id: "automation", label: "Business process automation" },
-  { id: "integration", label: "Systems integration & custom builds" },
-  { id: "web3", label: "Web3 / blockchain development" },
-];
+import { SERVICE_OPTIONS } from "@/lib/services";
 
 const initialState = { status: "idle", message: "" };
 
-function Field({ label, name, type }) {
+const inputClass =
+  "w-full rounded-sm border border-line bg-paper px-4 py-3 text-ink placeholder:text-ink-faint focus:border-accent outline-none transition-colors";
+
+function Field({ label, name, type = "text", optional = false, autoComplete }) {
   return (
     <div>
       <label htmlFor={name} className="block text-sm text-ink-soft mb-2">
@@ -23,8 +20,9 @@ function Field({ label, name, type }) {
         id={name}
         name={name}
         type={type}
-        required={type !== "text-optional"}
-        className="w-full rounded-sm border border-line bg-paper px-4 py-3 text-ink placeholder:text-ink-faint focus:border-accent outline-none transition-colors"
+        required={!optional}
+        autoComplete={autoComplete}
+        className={inputClass}
       />
     </div>
   );
@@ -48,8 +46,8 @@ export default function ProjectForm() {
 
   return (
     <form action={formAction} className="space-y-7">
-      {/* Honeypot field — hidden from real visitors via CSS + tabIndex,
-          left unlabeled so screen readers skip it too. */}
+      {/* Honeypot field: hidden from real visitors and skipped by screen
+          readers. Bots that fill it get a fake success. */}
       <div className="hidden" aria-hidden="true">
         <label htmlFor="company_website">Leave this field empty</label>
         <input
@@ -62,11 +60,16 @@ export default function ProjectForm() {
       </div>
 
       <div className="grid sm:grid-cols-2 gap-6">
-        <Field label="Name" name="name" type="text" />
-        <Field label="Email" name="email" type="email" />
+        <Field label="Name" name="name" autoComplete="name" />
+        <Field label="Email" name="email" type="email" autoComplete="email" />
       </div>
 
-      <Field label="Company (optional)" name="company" type="text-optional" />
+      <Field
+        label="Company (optional)"
+        name="company"
+        optional
+        autoComplete="organization"
+      />
 
       <fieldset>
         <legend className="text-sm text-ink-soft mb-3">
@@ -92,15 +95,15 @@ export default function ProjectForm() {
 
       <div>
         <label htmlFor="message" className="block text-sm text-ink-soft mb-2">
-          Tell me about the project
+          Tell me about the process
         </label>
         <textarea
           id="message"
           name="message"
           required
           rows={5}
-          placeholder="What's the system, the problem, and the timeline you're working with?"
-          className="w-full rounded-sm border border-line bg-paper px-4 py-3 text-ink placeholder:text-ink-faint focus:border-accent outline-none transition-colors"
+          placeholder="What comes in, what happens to it, and where should it end up? Mention the apps involved and your timeline."
+          className={inputClass}
         />
       </div>
 

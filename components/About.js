@@ -10,18 +10,27 @@ export default function About() {
 
         <div className="measure space-y-6 text-ink-soft text-lg leading-relaxed">
           <p>
-  I have a B.Eng in Mining Engineering from FUTA. I never worked a
-  day in a mine — I found ERP systems and automation more
-  interesting than ore deposits, and pivoted before graduation
-  caught up with me.
-</p>
-<p>
-  Today I build and maintain the systems that keep retail
-  operations running — ERP customization, automation pipelines,
-  web apps, and the occasional Web3 build — for{" "}
-  <span className="text-ink">ARTEE Group</span> and for freelance
-  clients who need the same kind of work done properly.
-</p>
+            I'm an automation engineer and Odoo developer based in Lagos.
+            Most of my work starts with the same problem: a team doing by
+            hand what a system should do for them. Typing invoices into an
+            ERP. Copying leads from one app to another. Chasing updates
+            across spreadsheets.
+          </p>
+          <p>
+            Day to day, I lead Odoo ERP customization and IT at{" "}
+            <span className="text-ink">ARTEE Group</span>, the multi-brand
+            retail group behind SPAR supermarkets in Nigeria, where I'm also
+            building an invoice reconciliation platform for the finance
+            team. Since 2022 I've freelanced as{" "}
+            <span className="text-ink">Dynamohtech</span>, delivering 60+
+            projects for international clients.
+          </p>
+          <p>
+            I trained as an engineer (B.Eng., FUTA) and work like one: I map
+            your current process, agree with you what "done" looks like,
+            test against real edge cases, and hand over a system your team
+            can keep running.
+          </p>
         </div>
       </div>
     </section>

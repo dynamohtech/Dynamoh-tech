@@ -1,5 +1,11 @@
 import ProjectForm from "./ProjectForm";
 
+const goodFit = [
+  "You process invoices, orders or forms by hand and want them flowing into your system automatically.",
+  "You run Odoo and need customizations or integrations that hold up in daily use.",
+  "You're an agency that needs a dependable automation partner for client work.",
+];
+
 export default function StartProject() {
   return (
     <section
@@ -14,10 +20,25 @@ export default function StartProject() {
         </div>
 
         <div className="max-w-2xl">
-          <p className="text-ink-soft text-lg leading-relaxed mb-8">
-            Tell me what you're working with and I'll reply by email —
-            usually within a day or two.
+          <p className="text-ink-soft text-lg leading-relaxed">
+            Send me a short description of the process you want automated:
+            what comes in, what happens to it, and where it should end up.
+            I'll reply by email, usually within a day or two, with how I'd
+            approach it.
           </p>
+
+          <div className="mt-8 mb-10 rounded-sm border border-line bg-surface/60 px-6 py-5">
+            <p className="text-sm text-ink-faint mb-3">A good fit if</p>
+            <ul className="space-y-2.5">
+              {goodFit.map((item) => (
+                <li key={item} className="flex gap-3 text-ink-soft leading-relaxed">
+                  <span aria-hidden="true" className="text-accent-strong">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           <ProjectForm />
         </div>
       </div>

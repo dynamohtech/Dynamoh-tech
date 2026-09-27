@@ -5,14 +5,14 @@ import { useState } from "react";
 const statusColor = {
   "In development": "bg-ink-faint",
   Live: "bg-accent",
-  "Concept build": "bg-ink-faint",
-  "Available as a service": "bg-accent",
+  "Own build": "bg-ink-faint",
+  "Live · rebuild in progress": "bg-accent",
 };
 
 function StatusTag({ status }) {
   return (
     <span className="inline-flex items-center gap-2 text-sm text-ink-soft">
-      <span className={`h-1.5 w-1.5 rounded-full ${statusColor[status]}`} />
+      <span className={`h-1.5 w-1.5 rounded-full ${statusColor[status] || "bg-ink-faint"}`} />
       {status}
     </span>
   );

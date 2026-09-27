@@ -1,32 +1,49 @@
 "use server";
 
 import { Resend } from "resend";
+import { SERVICE_OPTIONS, CONTACT_EMAIL } from "@/lib/services";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-const SERVICE_LABELS = {
-  odoo: "Odoo ERP customization & integration",
-  automation: "Business process automation",
-  integration: "Systems integration & custom builds",
-  web3: "Web3 / blockchain development",
-};
+const SERVICE_LABELS = Object.fromEntries(
+  SERVICE_OPTIONS.map((option) => [option.id, option.label])
+);
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-// Where submissions land. Change this if the address ever changes.
-const RECIPIENT = "dynamohtech24@gmail.com";
+// Resend's shared sender. It needs no domain setup, but Resend will ONLY
+// deliver mail from it to the email address that owns your Resend account.
+// Anything else is rejected with a 403. To send to any address, verify a
+// domain in Resend and set CONTACT_FROM_EMAIL to an address on it.
+const DEFAULT_FROM = "Portfolio site <onboarding@resend.dev>";
+
+const FALLBACK_MESSAGE = `Something went wrong sending this. Please email me directly at ${CONTACT_EMAIL}.`;
+
+// Resend's reply when onboarding@resend.dev is used to send to anyone other
+// than the Resend account owner: a 403 validation_error whose message says
+// you can only send testing emails to your own address.
+function isTestingSenderRestriction(error, from) {
+  return (
+    from.includes("resend.dev") &&
+    error.statusCode === 403 &&
+    (error.name === "validation_error" ||
+      /own email|testing emails|verify a domain/i.test(error.message || ""))
+  );
+}
+
+function clean(value, maxLength) {
+  return (value || "").toString().trim().slice(0, maxLength);
+}
 
 export async function submitProjectInquiry(prevState, formData) {
-  // Honeypot — real visitors never see or fill this field. If it's
-  // filled, silently pretend success so bots don't learn to adapt.
+  // Honeypot: real visitors never see or fill this field. If it's filled,
+  // pretend success so bots don't learn to adapt.
   if (formData.get("company_website")) {
-    return { status: "success", message: "Sent — I'll get back to you soon." };
+    return { status: "success", message: "Sent. I'll get back to you soon." };
   }
 
-  const name = (formData.get("name") || "").toString().trim();
-  const email = (formData.get("email") || "").toString().trim();
-  const company = (formData.get("company") || "").toString().trim();
-  const message = (formData.get("message") || "").toString().trim();
+  const name = clean(formData.get("name"), 120).replace(/[\r\n]+/g, " ");
+  const email = clean(formData.get("email"), 200);
+  const company = clean(formData.get("company"), 200);
+  const message = clean(formData.get("message"), 5000);
   const services = formData.getAll("services").map(String);
 
   if (!name || !email || !message || services.length === 0) {
@@ -41,25 +58,29 @@ export async function submitProjectInquiry(prevState, formData) {
     return { status: "error", message: "That email address doesn't look right." };
   }
 
-  if (!process.env.RESEND_API_KEY) {
+  const apiKey = process.env.RESEND_API_KEY;
+  const to = process.env.CONTACT_TO_EMAIL || CONTACT_EMAIL;
+  const from = process.env.CONTACT_FROM_EMAIL || DEFAULT_FROM;
+
+  if (!apiKey) {
     console.error(
-      "submitProjectInquiry: RESEND_API_KEY is not set — see README for setup."
+      "[contact form] RESEND_API_KEY is not set. Add it to .env.local (local) or to Vercel → Settings → Environment Variables, then redeploy."
     );
-    return {
-      status: "error",
-      message:
-        "This form isn't fully wired up yet — email me directly instead.",
-    };
+    return { status: "error", message: FALLBACK_MESSAGE };
   }
 
   const serviceList = services
-    .map((s) => SERVICE_LABELS[s] || s)
+    .map((key) => SERVICE_LABELS[key] || key)
     .join(", ");
 
   try {
+    const resend = new Resend(apiKey);
+
+    // The Resend SDK does not throw when the API rejects an email. It
+    // returns { data, error }, so the error has to be checked here.
     const { data, error } = await resend.emails.send({
-      from: "Portfolio site <onboarding@resend.dev>",
-      to: RECIPIENT,
+      from,
+      to,
       replyTo: email,
       subject: `New project inquiry from ${name}`,
       text: [
@@ -71,24 +92,32 @@ export async function submitProjectInquiry(prevState, formData) {
         "Project details:",
         message,
       ]
-        .filter(Boolean)
+        .filter((line) => line !== null)
         .join("\n"),
     });
 
     if (error) {
-      console.error("submitProjectInquiry: Resend returned an error:", error);
-      return {
-        status: "error",
-        message: "Something went wrong sending this — email me directly instead.",
-      };
+      console.error("[contact form] Resend rejected the email:", {
+        to,
+        from,
+        statusCode: error.statusCode,
+        name: error.name,
+        message: error.message,
+      });
+
+      if (isTestingSenderRestriction(error, from)) {
+        console.error(
+          `[contact form] With the onboarding@resend.dev sender, Resend only delivers to the email that owns your Resend account. Either set CONTACT_TO_EMAIL to that address, or verify a domain in Resend and set CONTACT_FROM_EMAIL to an address on it.`
+        );
+      }
+
+      return { status: "error", message: FALLBACK_MESSAGE };
     }
 
-    return { status: "success", message: "Sent — I'll get back to you soon." };
-  } catch (err) {
-    console.error("submitProjectInquiry exception:", err);
-    return {
-      status: "error",
-      message: "Server error sending email — please try again later.",
-    };
+    console.info("[contact form] Email sent, Resend id:", data?.id);
+    return { status: "success", message: "Sent. I'll get back to you soon." };
+  } catch (error) {
+    console.error("[contact form] Unexpected error sending email:", error);
+    return { status: "error", message: FALLBACK_MESSAGE };
   }
-}s
+}

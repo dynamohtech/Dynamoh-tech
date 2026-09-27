@@ -12,15 +12,17 @@ const channels = [
   {
     label: "Telegram",
     value: "@Dynamoh_24",
-    note: "Web3 inquiries",
     href: "https://t.me/Dynamoh_24",
   },
   {
     label: "LinkedIn",
     value: "Connect on LinkedIn",
-    // TODO(Emmanuel): replace with your real profile URL, e.g.
-    // https://www.linkedin.com/in/your-handle
     href: "https://www.linkedin.com/in/emmanuel-adedamola-460245229",
+  },
+  {
+    label: "GitHub",
+    value: "dynamohtech",
+    href: "https://github.com/dynamohtech",
   },
 ];
 
@@ -37,9 +39,14 @@ export default function Contact() {
 
           <div>
             <p className="measure text-paper/80 text-lg leading-relaxed">
-              Odoo rollout stalled? Invoices piling up across systems that
-              don't talk to each other? Message me directly — I read
-              everything myself.
+              Invoices piling up, data stuck between systems, or leads waiting
+              on someone to review them by hand? If there's a workflow you're
+              tired of doing manually, message me directly. I read everything
+              myself.
+            </p>
+            <p className="measure mt-4 text-paper/60 leading-relaxed">
+              Based in Lagos (UTC+1), with full overlap with UK working hours
+              and US East Coast mornings.
             </p>
 
             <div className="mt-10 grid sm:grid-cols-2 gap-4">
@@ -51,10 +58,7 @@ export default function Contact() {
                   rel={channel.href.startsWith("http") ? "noopener noreferrer" : undefined}
                   className="flex items-center justify-between gap-4 rounded-sm border border-paper/25 px-5 py-4 hover:border-accent hover:bg-paper/5 transition-colors"
                 >
-                  <span className="text-sm text-paper/55">
-                    {channel.label}
-                    {channel.note ? ` · ${channel.note}` : ""}
-                  </span>
+                  <span className="text-sm text-paper/55">{channel.label}</span>
                   <span className="text-paper font-medium text-right break-words">
                     {channel.value}
                   </span>

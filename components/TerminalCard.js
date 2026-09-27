@@ -3,13 +3,13 @@
 import { useEffect, useState } from "react";
 
 const COMMAND = "whoami";
-const IDENTITY = "Emmanuel Adegbaju — Odoo, automation & Web3 engineer";
+const IDENTITY = "Emmanuel Adegbaju: n8n AI automation & Odoo engineer, Lagos (UTC+1)";
 
 const STATS = [
-  { label: "invoices/mo target (in dev)", value: "10,000+" },
-  { label: "ERPs integrated", value: "2" },
-  { label: "curriculum phases designed", value: "7" },
-  { label: "Web3 projects shipped", value: "2" },
+  { label: "invoices/mo, reconciliation platform*", value: "10,000+" },
+  { label: "vendors in that pipeline", value: "2,000+" },
+  { label: "ERPs matched (Odoo + D365)", value: "2" },
+  { label: "client projects since 2022", value: "60+" },
 ];
 
 export default function TerminalCard() {

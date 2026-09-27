@@ -1,6 +1,22 @@
 import PipelineDiagram from "./PipelineDiagram";
 import CaseStudy from "./CaseStudy";
 
+const alsoBuilt = [
+  {
+    name: "Telegram community bot",
+    note: "in progress",
+    body: "Members submit listings, an admin approves them inside Telegram, and approved posts publish to the channel automatically.",
+  },
+  {
+    name: "E-commerce lead-sourcing pipeline",
+    body: "Finds US and UK online stores with n8n and Serper, and stores the leads in Google Sheets and Supabase.",
+  },
+  {
+    name: "Web3 presale and staking sites",
+    body: "Presale and staking websites for token projects on BNB Smart Chain and Solana, including the ShibaZK presale.",
+  },
+];
+
 export default function FeaturedWork() {
   return (
     <section id="work" className="container-page py-20 md:py-28 border-t border-line">
@@ -11,27 +27,27 @@ export default function FeaturedWork() {
           </h2>
         </div>
 
-        <div>
+        <div className="min-w-0">
           <CaseStudy
-            title="Invoice reconciliation across two ERPs"
+            title="AI invoice reconciliation across Odoo and Dynamics 365"
             org="ARTEE Group"
             status="In development"
-            stack="React 19 · Vite · n8n · PostgreSQL · vision-LLM extraction"
+            stack="Vision-LLMs · docTR · n8n · PostgreSQL · React 19 · Vite"
             body={
               <>
-                ARTEE's finance team reconciles vendor invoices against two
-                separate ERPs — Odoo for the Butchery subsidiary, Dynamics
-                365 for SPAR Nigeria — at a target volume of 10,000+ invoices
-                a month. I'm building the pipeline that automates it:
-                extracting line items with a vision-LLM (moved on from a
-                pure OCR approach once real invoices turned out messier than
-                expected), reconstructing rows where table structure gets
-                scrambled in scanning, and cross-referencing Goods Receipt
-                Notes from D365 even when the uploader only has a PO number
-                — including POs that map to more than one GRN. A
-                blur-detection pre-filter catches bad scans and
-                automatically requests a resend instead of feeding garbage
-                data downstream.
+                The finance team handles 10,000+ supplier invoices a month
+                from 2,000+ vendors, many of them blurry scans, across two
+                ERPs: Odoo for the Butchery subsidiary and Dynamics 365 for
+                SPAR Nigeria. I'm building the pipeline that extracts each
+                invoice and matches it to the right record: the Odoo vendor
+                bill, or the D365 goods receipt, even when the uploader only
+                has a PO number and that PO maps to more than one GRN.
+                Extraction started on an OCR stack (docTR, invoice2data, n8n,
+                PostgreSQL) and moved to vision-LLMs once real invoices proved
+                messier than expected. A blur check catches bad scans and
+                asks for a resend, every match carries a confidence score,
+                and uncertain ones go to a review screen built in React 19
+                and Vite.
               </>
             }
           >
@@ -39,68 +55,87 @@ export default function FeaturedWork() {
           </CaseStudy>
 
           <CaseStudy
-            title="In-store barcode price checker"
+            title="n8n AI agent for lead qualification"
+            status="Own build"
+            stack="n8n · Gemini · Groq · NocoDB · PostgreSQL · Telegram Bot API"
+            body={
+              <>
+                My own lead system: n8n pulls leads in, Gemini and Groq score
+                and qualify them, NocoDB and Postgres keep the history, and
+                qualified leads land in Telegram for follow-up. It was built
+                to replace manual lead review, and it's the same pattern I use
+                for clients who need leads scored and routed before a person
+                touches them.
+              </>
+            }
+          />
+
+          <CaseStudy
+            title="Wellness travel website with an interactive Mapbox map"
+            org="a UK wellness travel company"
+            status="Live · rebuild in progress"
+            stack="WordPress · Mapbox → Next.js · Tailwind · Supabase"
+            body={
+              <>
+                Destination pages, curated trip listings, a contact flow and
+                an interactive Mapbox map of wellness locations, delivered on
+                WordPress. The client came back for a custom rebuild in
+                Next.js, Tailwind and Supabase, with an admin dashboard so
+                non-technical staff can edit the site's content. I'm building
+                it now.
+              </>
+            }
+          />
+
+          <CaseStudy
+            title="In-store price checker on AWS"
             org="ARTEE Group"
             status="Live"
             stack="React · Vite · AWS Lambda · AWS SAM · DynamoDB"
             body={
               <>
                 SPAR store staff and customers needed a fast way to check
-                current prices by barcode, pulled live from a Dynamics 365
-                pricing backend. During UAT, I traced a cold-start delay in
-                the pricing API that occasionally exceeded API Gateway's
-                hard 29-second timeout — the kind of bug that looks fine in
-                a demo and fails in a real store. I re-architected around it
-                with DynamoDB caching rather than just retrying harder.
+                current prices by barcode, pulled from a Dynamics 365 pricing
+                backend. During UAT, I traced a cold-start delay in the
+                pricing API that sometimes exceeded API Gateway's hard
+                29-second timeout, the kind of bug that looks fine in a demo
+                and fails in a real store. I re-architected around it with
+                DynamoDB caching rather than retrying harder, then built a
+                second version that runs locally in each store and reads
+                prices from a local database instead of calling Dynamics 365
+                endpoints at all.
               </>
             }
           />
 
           <CaseStudy
-            title="AI lead-qualification pipeline"
-            status="Concept build"
-            stack="n8n · PostgreSQL · Gemini 2.5 Flash · Groq · Telegram Bot API"
+            title="Solana token risk scanner (Telegram bot)"
+            status="Own build"
+            stack="Python · Helius · Telegram Bot API · Google Sheets · PythonAnywhere"
             body={
               <>
-                A self-directed build exploring how far AI can take lead
-                qualification before a human needs to step in: a
-                multi-stage pipeline that scores inbound leads and routes
-                the qualified ones, built around a fictional agency brief.
-                It's a demo, not a paid engagement — but the scoring stages
-                and routing logic are real, working systems.
-              </>
-            }
-          />
-
-          <CaseStudy
-            title="Odoo + WhatsApp Cloud API integration"
-            status="Available as a service"
-            stack="Odoo Community Edition · WhatsApp Cloud API"
-            body={
-              <>
-                Packaged for businesses running Odoo Community Edition who
-                want WhatsApp-based customer messaging without paying for
-                an Enterprise upgrade — order updates, support threads, and
-                notifications sent and received without leaving Odoo.
+                A Python Telegram bot that scans new Solana tokens through
+                Helius, filters out low-liquidity and airdrop tokens, and gives
+                each one a risk score so users can spot likely scams before
+                buying. It runs on PythonAnywhere and logs every scan to
+                Google Sheets.
               </>
             }
           />
 
           <div className="pt-10">
-            <h3 className="font-display font-medium text-lg text-ink mb-1">
-              Web3 / Solana
+            <h3 className="font-display font-medium text-lg text-ink mb-5">
+              Also built
             </h3>
-            <p className="text-sm text-ink-faint mb-4">Personal projects</p>
             <ul className="space-y-4">
-              <li className="measure text-ink-soft leading-relaxed">
-                <span className="text-ink">Dynamo Token</span> — a Solana
-                presale token (5B supply) with staking and a referral system
-                built in.
-              </li>
-              <li className="measure text-ink-soft leading-relaxed">
-                <span className="text-ink">Sol-deep Search</span> — a
-                Telegram bot that screens Solana tokens for scam patterns.
-              </li>
+              {alsoBuilt.map((item) => (
+                <li key={item.name} className="measure text-ink-soft leading-relaxed">
+                  <span className="text-ink">{item.name}</span>
+                  {item.note ? <span className="text-ink-faint"> ({item.note})</span> : null}
+                  {": "}
+                  {item.body}
+                </li>
+              ))}
             </ul>
           </div>
         </div>

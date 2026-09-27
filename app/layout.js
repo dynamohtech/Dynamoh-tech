@@ -22,19 +22,23 @@ const plexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
-// TODO(Emmanuel): swap in your real domain once you have one — this is
-// used for the absolute Open Graph/Twitter image URLs below.
+// Used for the absolute Open Graph/Twitter image URLs below. Change it if
+// the site moves to a custom domain.
 const siteUrl = "https://dynamotech.vercel.app";
+
+const title = "Emmanuel Adegbaju | n8n AI Automation, Odoo ERP & Invoice Processing";
+const description =
+  "Automation engineer and Odoo developer in Lagos. I build n8n workflows and AI agents that connect to Odoo, Dynamics 365, your CRM or Google Sheets and take manual work off your team, from invoice processing to lead qualification.";
+const shortDescription =
+  "n8n workflows, AI agents, invoice and document extraction, and Odoo customization that take manual work off your team.";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Emmanuel Adegbaju — Odoo ERP & Business Process Automation",
-  description:
-    "I build the ERP customizations, automation pipelines, and systems integrations that remove manual work from retail and SME operations — Odoo, AI agents, and Web3 development.",
+  title,
+  description,
   openGraph: {
-    title: "Emmanuel Adegbaju — Odoo ERP & Business Process Automation",
-    description:
-      "Odoo ERP customization, business process automation, and systems integration for retail and SME operations.",
+    title,
+    description: shortDescription,
     url: siteUrl,
     siteName: "dynamotech",
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],
@@ -43,9 +47,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Emmanuel Adegbaju — Odoo ERP & Business Process Automation",
-    description:
-      "Odoo ERP customization, business process automation, and systems integration for retail and SME operations.",
+    title,
+    description: shortDescription,
     images: ["/og-image.png"],
   },
 };

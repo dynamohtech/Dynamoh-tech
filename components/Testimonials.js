@@ -72,7 +72,9 @@ export default function Testimonials() {
           </h2>
         </div>
 
-        <div>
+        {/* min-w-0 stops the scrolling track from stretching the grid
+            column (and the whole page) wider than the screen on mobile. */}
+        <div className="min-w-0">
           <div className="flex items-center justify-between mb-4">
             <p className="text-sm text-ink-faint">From Fiverr client reviews</p>
             <div className="flex gap-2">
