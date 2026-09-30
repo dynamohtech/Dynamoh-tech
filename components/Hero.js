@@ -47,6 +47,23 @@ export default function Hero() {
               See the work
             </a>
           </div>
+
+          <a
+            href="https://github.com/dynamohtech"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group mt-8 inline-flex max-w-xl items-start gap-3 rounded-sm border border-line px-4 py-3 text-sm text-ink-soft hover:border-accent transition-colors"
+          >
+            <span aria-hidden="true" className="relative mt-[0.35rem] flex h-2 w-2 shrink-0">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+            </span>
+            <span>
+              <span className="font-medium text-ink">Currently building:</span>{" "}
+              an open-source toolkit for EU Cyber Resilience Act compliance.{" "}
+              <span className="text-accent-strong group-hover:underline">Follow along on GitHub →</span>
+            </span>
+          </a>
         </div>
 
         <div className="md:pt-2">
