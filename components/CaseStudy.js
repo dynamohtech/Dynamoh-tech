@@ -7,6 +7,8 @@ const statusColor = {
   Live: "bg-accent",
   "Own build": "bg-ink-faint",
   "Live · rebuild in progress": "bg-accent",
+  "Open source · v0.1.0": "bg-accent",
+  "Private beta": "bg-accent",
 };
 
 function StatusTag({ status }) {
@@ -18,7 +20,7 @@ function StatusTag({ status }) {
   );
 }
 
-export default function CaseStudy({ title, org, status, body, stack, children }) {
+export default function CaseStudy({ title, org, status, body, stack, link, linkLabel, children }) {
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -47,6 +49,17 @@ export default function CaseStudy({ title, org, status, body, stack, children })
       </button>
 
       <p className="mt-4 font-mono text-xs text-ink-faint">{stack}</p>
+
+      {link && (
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 inline-block text-sm text-accent-strong hover:text-accent hover:underline transition-colors"
+        >
+          {linkLabel || "View on GitHub"} →
+        </a>
+      )}
 
       {expanded && children}
     </article>

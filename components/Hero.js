@@ -59,9 +59,10 @@ export default function Hero() {
               <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
             </span>
             <span>
-              <span className="font-medium text-ink">Currently building:</span>{" "}
-              an open-source toolkit for EU Cyber Resilience Act compliance.{" "}
-              <span className="text-accent-strong group-hover:underline">Follow along on GitHub →</span>
+              <span className="font-medium text-ink">Just shipped:</span>{" "}
+              two open-source compliance toolkits, cra-kit for the EU Cyber
+              Resilience Act and pqc-kit for post-quantum cryptography readiness.{" "}
+              <span className="text-accent-strong group-hover:underline">See them on GitHub →</span>
             </span>
           </a>
         </div>

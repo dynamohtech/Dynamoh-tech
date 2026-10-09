@@ -29,6 +29,74 @@ export default function FeaturedWork() {
 
         <div className="min-w-0">
           <CaseStudy
+            title="cra-kit: EU Cyber Resilience Act compliance toolkit"
+            status="Open source · v0.1.0"
+            stack="Python 3.11+ · zero dependencies · CycloneDX 1.6 · OSV.dev · CISA KEV · GitHub Actions"
+            link="https://github.com/dynamohtech/cra-kit"
+            body={
+              <>
+                The EU Cyber Resilience Act puts vulnerability reporting duties
+                on anyone selling connected hardware or software in the EU from
+                11 September 2026, with full obligations from 11 December 2027
+                and fines up to €15M or 2.5% of global turnover. cra-kit is an
+                open-source command-line tool that gets a product team started:
+                it builds a CycloneDX SBOM from npm, Python, Rust and Go
+                lockfiles, checks every component against OSV.dev and CISA's
+                Known Exploited Vulnerabilities list (and can fail a CI build on
+                them), works out whether the CRA applies and which conformity
+                route the product needs, scores readiness against the 22 Annex I
+                requirements, and drafts the 24-hour, 72-hour and final reports
+                Article 14 requires. Tested on Linux, Windows and macOS, with a
+                weekly check against live vulnerability data.
+              </>
+            }
+          />
+
+          <CaseStudy
+            title="pqc-kit: post-quantum cryptography inventory scanner"
+            status="Open source · v0.1.0"
+            stack="Python 3.11+ · zero dependencies · CycloneDX 1.6 CBOM · X.509 / PEM / DER parsing"
+            link="https://github.com/dynamohtech/pqc-kit"
+            body={
+              <>
+                Governments have set dates for moving off cryptography that
+                quantum computers will break: NIST's draft plan deprecates RSA-2048 after 2030,
+                NSA's CNSA 2.0 applies to new national-security acquisitions from
+                2027, and the US, UK and EU all target 2035. The first step is
+                knowing where cryptography is used. pqc-kit scans source code
+                (Python, Java, Kotlin, Go, JavaScript and TypeScript),
+                certificates, keys and keystores, exports a cryptography bill of
+                materials, and maps every finding to the NIST, US federal, CNSA
+                2.0, UK NCSC and EU deadlines. One pip install with nothing else
+                to set up, 205 offline tests, and a weekly check that parses 705
+                real post-quantum certificates from the IETF Hackathon.
+              </>
+            }
+          />
+
+          <CaseStudy
+            title="Budget and Shop Book: offline-first money apps"
+            status="Private beta"
+            stack="React 19 · TypeScript · Vite · Dexie (IndexedDB) · Capacitor · Supabase · Tailwind"
+            body={
+              <>
+                A budgeting app for salary earners and small business owners,
+                and Shop Book, its companion app for shops, both built to work
+                fully offline as a web app first and then on Android and iPhone
+                from the same code. On the personal side: monthly plans, bills
+                and subscriptions with reminders, goals and savings, debts,
+                IOUs and ajo, reports, a salary and tax helper for the 2026
+                rules, and a daily money thought. On the business side: today's
+                sales and expenses, a daily cash-up, customers and suppliers on
+                credit, invoices and receipts to send on WhatsApp, stock bought
+                by the carton and sold by the piece, checks that transfer and
+                POS money really arrived, and profit-and-loss and VAT reports.
+                Sync and logging by WhatsApp or Telegram chat are optional.
+              </>
+            }
+          />
+
+          <CaseStudy
             title="AI invoice reconciliation across Odoo and Dynamics 365"
             org="ARTEE Group"
             status="In development"
