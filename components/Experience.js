@@ -7,6 +7,7 @@ const roles = [
       "Took over Odoo 19 Enterprise customization from a departing developer: Studio workflows, module changes and GitHub-based deployments on Odoo.sh.",
       "Leading the build of an invoice reconciliation platform for a finance team handling 10,000+ supplier invoices a month from 2,000+ vendors, matched against Odoo vendor bills for one subsidiary and Dynamics 365 goods receipts for another.",
       "Moved invoice extraction from an OCR stack (docTR, invoice2data, n8n, PostgreSQL) to vision-LLMs, and built the review front end in React 19 and Vite.",
+      "Building a daily payment reconciliation: a scheduled import from a cloud SQL database to a local server, per-store and per-tender comparison, a finance dashboard and automated email alerts.",
       "Built a store price checker on AWS, plus a store-local version that reads prices from a local database instead of Dynamics 365 endpoints.",
       "On-site IT support for group locations, including warehouse operations.",
     ],

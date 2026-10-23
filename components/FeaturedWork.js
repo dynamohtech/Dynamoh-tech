@@ -13,7 +13,12 @@ const alsoBuilt = [
   },
   {
     name: "Web3 presale and staking sites",
-    body: "Presale and staking websites for token projects on BNB Smart Chain and Solana, including the ShibaZK presale.",
+    body: "Presale, staking and token websites for projects on BNB Smart Chain and Solana, including the ShibaZK presale and the LilBro token site.",
+  },
+  {
+    name: "WooCommerce clothing store",
+    note: "in progress",
+    body: "An online clothing store on WordPress and WooCommerce for a client selling to customers in Nigeria.",
   },
 ];
 
@@ -101,6 +106,8 @@ export default function FeaturedWork() {
             org="ARTEE Group"
             status="In development"
             stack="Vision-LLMs · docTR · n8n · PostgreSQL · React 19 · Vite"
+            link="https://github.com/dynamohtech/ap-invoice-reconciliation"
+            linkLabel="View the public version on GitHub"
             body={
               <>
                 The finance team handles 10,000+ supplier invoices a month
@@ -121,6 +128,27 @@ export default function FeaturedWork() {
           >
             <PipelineDiagram />
           </CaseStudy>
+
+          <CaseStudy
+            title="Daily payment reconciliation across stores"
+            org="ARTEE Group"
+            status="In development"
+            stack="SQL Server · Azure SQL · scheduled imports · custom dashboard · automated email reports"
+            body={
+              <>
+                Store payments sit in a cloud SQL database, and finance needs
+                to know every day whether they match the other side. I'm
+                automating a daily import from the cloud database to a local
+                SQL Server on an on-prem machine, then comparing payment
+                amounts per day, per store and per tender type, with exact
+                matching. Finance gets a dashboard on the server and an email
+                alert when anything doesn't match, plus a report in their
+                inbox each morning. Each store also runs its own server with
+                end-of-day and department sales views, so the next step is
+                collecting every store's reports onto the main server.
+              </>
+            }
+          />
 
           <CaseStudy
             title="n8n AI agent for lead qualification"
