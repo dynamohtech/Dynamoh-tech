@@ -45,8 +45,8 @@ export default function Contact() {
               myself.
             </p>
             <p className="measure mt-4 text-paper/60 leading-relaxed">
-              Based in Lagos (UTC+1), with full overlap with UK working hours
-              and US East Coast mornings.
+              Based in Lagos (UTC+1) and open to remote roles and contracts. I
+              work across UK, US, Canada and Australia time zones.
             </p>
 
             <div className="mt-10 grid sm:grid-cols-2 gap-4">

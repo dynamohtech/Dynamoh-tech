@@ -8,6 +8,11 @@ const alsoBuilt = [
     body: "Members submit listings, an admin approves them inside Telegram, and approved posts publish to the channel automatically.",
   },
   {
+    name: "Fashion e-commerce store",
+    note: "client project, in progress",
+    body: "A WordPress and WooCommerce store for a women's clothing brand selling in Nigeria and Germany, with custom branding, a logo and a hidden preview build the client reviews before launch.",
+  },
+  {
     name: "E-commerce lead-sourcing pipeline",
     body: "Finds US and UK online stores with n8n and Serper, and stores the leads in Google Sheets and Supabase.",
   },
@@ -121,6 +126,27 @@ export default function FeaturedWork() {
           >
             <PipelineDiagram />
           </CaseStudy>
+
+          <CaseStudy
+            title="Daily payment reconciliation for a retail chain"
+            org="ARTEE Group"
+            status="In development"
+            stack="Microsoft SQL Server · Dynamics 365 · on-prem dashboard · automated email reports"
+            body={
+              <>
+                Finance needed to know, every morning, whether each SPAR store's
+                takings in Dynamics 365 matched what the store systems recorded.
+                I automated a daily import from the cloud SQL database to a
+                local SQL Server, then built a reconciliation that compares
+                payments per day, per store and per tender type, with an exact
+                match required. Results show on a dashboard on the company's own
+                server, and a short report goes out by email each morning: did
+                the data sync, did reconciliation run, and which store is short
+                and by how much, so the right store server can be fixed the
+                same day instead of at month end.
+              </>
+            }
+          />
 
           <CaseStudy
             title="n8n AI agent for lead qualification"
