@@ -48,11 +48,15 @@ export default function Hero() {
             </a>
           </div>
 
+          <p className="mt-6 text-sm text-ink-faint">
+            Open to remote roles and contracts · UK, US, Canada and Australia time zones
+          </p>
+
           <a
             href="https://github.com/dynamohtech"
             target="_blank"
             rel="noopener noreferrer"
-            className="group mt-8 inline-flex max-w-xl items-start gap-3 rounded-sm border border-line px-4 py-3 text-sm text-ink-soft hover:border-accent transition-colors"
+            className="group mt-4 inline-flex max-w-xl items-start gap-3 rounded-sm border border-line px-4 py-3 text-sm text-ink-soft hover:border-accent transition-colors"
           >
             <span aria-hidden="true" className="relative mt-[0.35rem] flex h-2 w-2 shrink-0">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />

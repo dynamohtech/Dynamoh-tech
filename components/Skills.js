@@ -17,11 +17,11 @@ const groups = [
     items: [
       "Odoo 19 Enterprise",
       "Odoo.sh",
-      "Microsoft Dynamics 365",
+      "Dynamics 365 Finance & Operations",
+      "Microsoft SQL Server",
       "PostgreSQL",
       "Supabase",
       "NocoDB",
-      "Airtable",
       "Google Sheets",
     ],
   },
@@ -44,7 +44,7 @@ const groups = [
     label: "Also",
     items: [
       "Telegram Bot API",
-      "WordPress",
+      "WordPress & WooCommerce",
       "Bubble",
       "Mapbox",
       "Solana & BNB Smart Chain",

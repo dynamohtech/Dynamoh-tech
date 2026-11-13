@@ -8,7 +8,7 @@ const services = [
   {
     name: "Invoice & document data extraction",
     description:
-      "Pipelines that read invoices, receipts and forms (PDFs, scans or photos) with OCR and vision AI, check the fields, and write them into Odoo, your CRM, Airtable or Google Sheets. Low-confidence results go to a person for review instead of going in silently.",
+      "Pipelines that read invoices, receipts and forms (PDFs, scans or photos) with OCR and vision AI, check the fields, and write them into Odoo, Dynamics 365, your CRM or Google Sheets. Low-confidence results go to a person for review instead of going in silently.",
     stack: "Vision-LLMs · docTR · OCR · confidence scores · review queues",
   },
   {
